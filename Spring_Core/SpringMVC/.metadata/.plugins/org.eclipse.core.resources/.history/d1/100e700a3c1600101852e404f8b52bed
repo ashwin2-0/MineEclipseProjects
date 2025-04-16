@@ -1,0 +1,34 @@
+package springMVC.controller;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class HomeController {
+	@RequestMapping("/home")
+	public String home(Model model) {
+		System.out.println("from homeController inside home method");
+		model.addAttribute("name", "Durgesh Tiwar");
+		model.addAttribute("sname","Aniket Kumar Joshis");
+		List<String> sub = Arrays.asList("Java,Spring Boot, JSP , Jquery ,MySQL");
+		model.addAttribute("subjects",sub);
+		String page = "index";
+		return page;
+	}
+
+	@RequestMapping("/about")
+	public String about() {
+		System.out.println("from homeController inside About  method");
+		String page = "about";
+		return page;
+	}
+	// writing to show the demo of model and view
+	@RequestMapping("/help")
+	public String help() {
+		  
+	}
+}

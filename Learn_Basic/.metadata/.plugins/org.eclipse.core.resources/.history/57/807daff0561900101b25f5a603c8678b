@@ -1,0 +1,21 @@
+package src.com.lambda;
+
+@FunctionalInterface
+interface calculatorI {
+	int sum(int a, int b);
+}
+
+public class CalculatorDemo implements calculatorI {
+
+	public static void main(String[] args) {
+		@Override
+		calculatorI calc = (int a, int b) -> {
+			int sum = a + b;
+			return sum;
+		};
+		System.out.println(calc.sum(78, 80));
+		;
+	}
+
+
+}

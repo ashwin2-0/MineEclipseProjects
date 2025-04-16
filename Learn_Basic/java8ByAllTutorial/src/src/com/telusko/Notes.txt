@@ -1,0 +1,104 @@
+Here stream is the new method introduces in list interface in java 1.8
+now the issue is the people who have already used earlier interface all those people have to compulsory implment this method
+which is not possible by the way, so they have defined it in interface by using default keyword 
+so they no need to implement it
+
+// method Reference :
+Method references in Java 8 provide a way to refer to methods of existing classes or objects in a concise and readable manner. They are a shorthand notation of a lambda expression to call a method. Method references can be used to refer to static methods, instance methods, or constructors.
+
+ Types of Method References
+1. Static Method Reference
+2. Instance Method Reference of a Particular Object
+3. Instance Method Reference of an Arbitrary Object of a Particular Type
+4. Constructor Reference
+
+ Example for Each Type
+
+# 1. Static Method Reference
+java
+import java.util.Arrays;
+import java.util.List;
+
+public class StaticMethodReference {
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    public static void main(String[] args) {
+        List<String> messages = Arrays.asList("Hello", "World", "Java 8");
+        messages.forEach(StaticMethodReference::printMessage);
+    }
+}
+
+- Explanation: `StaticMethodReference::printMessage` is a reference to the static method `printMessage`.
+
+# 2. Instance Method Reference of a Particular Object
+java
+import java.util.Arrays;
+import java.util.List;
+
+public class InstanceMethodReference {
+    public void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    public static void main(String[] args) {
+        InstanceMethodReference instance = new InstanceMethodReference();
+        List<String> messages = Arrays.asList("Hello", "World", "Java 8");
+        messages.forEach(instance::printMessage);
+    }
+}
+
+- Explanation: `instance::printMessage` is a reference to the instance method `printMessage` of the particular object `instance`.
+
+# 3. Instance Method Reference of an Arbitrary Object of a Particular Type
+java
+import java.util.Arrays;
+import java.util.List;
+
+public class ArbitraryObjectMethodReference {
+    public static void main(String[] args) {
+        List<String> messages = Arrays.asList("Hello", "World", "Java 8");
+        messages.forEach(String::toUpperCase);
+    }
+}
+
+- Explanation: `String::toUpperCase` is a reference to the instance method `toUpperCase` of an arbitrary object of type `String`.
+
+# 4. Constructor Reference
+java
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Supplier;
+
+class Message {
+    private String message;
+
+    public Message() {
+        this.message = "Default Message";
+    }
+
+    public Message(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return message;
+    }
+}
+
+public class ConstructorReference {
+    public static void main(String[] args) {
+        Supplier<Message> messageSupplier = Message::new;
+        Message message = messageSupplier.get();
+        System.out.println(message); // Output: Default Message
+    }
+}
+
+- Explanation: `Message::new` is a reference to the constructor of the `Message` class.
+
+ Summary
+Method references provide a clean and concise way to refer to methods and constructors.
+ They enhance the readability of your code and are often used in conjunction with lambda 
+ expressions and functional interfaces.

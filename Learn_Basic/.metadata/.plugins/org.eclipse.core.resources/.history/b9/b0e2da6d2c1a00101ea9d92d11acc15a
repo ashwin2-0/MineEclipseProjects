@@ -1,0 +1,6 @@
+package src.com.MapFlatMap;
+
+public class Customer {
+	private Integer CustomerId;
+	
+}

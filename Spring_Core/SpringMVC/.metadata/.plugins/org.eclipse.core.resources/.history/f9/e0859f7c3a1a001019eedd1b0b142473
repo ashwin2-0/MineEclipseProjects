@@ -1,0 +1,13 @@
+package springMVC.controller;
+
+public class CustomerDTO {
+	private String name;
+	private int experience;
+	private String skills;
+	private String projects;
+	private String languages;
+	private String education;
+	private String address;
+	private String phone;
+	private String email;
+}

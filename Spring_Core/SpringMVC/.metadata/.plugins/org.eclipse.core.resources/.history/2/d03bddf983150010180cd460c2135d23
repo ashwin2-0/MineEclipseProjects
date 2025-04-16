@@ -1,0 +1,7 @@
+package springMVC;
+
+import org.springframework.web.util.pattern.PathPattern.PathRemainingMatchInfo;
+
+public class Test {
+	PathRemainingMatchInfo
+}

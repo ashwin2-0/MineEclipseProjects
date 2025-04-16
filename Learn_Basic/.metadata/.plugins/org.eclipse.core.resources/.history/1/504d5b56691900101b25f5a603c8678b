@@ -1,0 +1,12 @@
+package src.com.realTimeExample;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class DataBaseEmployee {
+	public List<Employee> employees = Arrays.asList(new Employee(12, "Ram", 50000, "Mechanical"),
+			new Employee(13, "shyam", 7000, "Computer")
+
+	);
+
+}

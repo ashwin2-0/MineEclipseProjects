@@ -1,0 +1,14 @@
+we can change the scope by two ways
+1- by using xml file
+
+<bean class="com.spring.stereo.componentScan.Person" name="person" scope="prototype">
+		<property name="name" value="Rohan" />
+		<property name="personId" value="4541" />
+	
+	</bean>
+	
+2- by using @scope
+
+@Component("obj")
+@Scope("prototype")
+public class Student {

@@ -1,0 +1,6 @@
+INDEX VERSION 1.134+D:\VisionForgeX\EclipseProjects\Learn_Basic\.metadata\.plugins\org.eclipse.jdt.core
+3531345150.index
+2972433902.index
+1865797976.index
+3405287290.index
+4232182409.index

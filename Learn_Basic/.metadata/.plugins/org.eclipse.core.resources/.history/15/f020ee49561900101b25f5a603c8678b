@@ -1,0 +1,15 @@
+package src.com.lambda;
+
+@FunctionalInterface
+interface calculatorI {
+	int sum(int a, int b);
+}
+
+public class CalculatorDemo implements calculatorI {
+	
+	calculatorI  calc (int a,int b)->{
+		int	sum = a+b;
+		return sum;
+	};
+
+}

@@ -1,0 +1,7 @@
+INDEX VERSION 1.134
+D:\VisionForgeX\EclipseProjects\Spring_Core\SpringMVC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3612873267.index
+\springMVC\src\main\java
+D:\VisionForgeX\EclipseProjects\Spring_Core\SpringMVC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2238499324.index
+\springMVC\src\main\resources
+D:\VisionForgeX\EclipseProjects\Spring_Core\SpringMVC\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\65910700.index
+\springMVC\src\main\java

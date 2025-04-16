@@ -1,0 +1,9 @@
+package src.com.lambda;
+
+@FunctionalInterface
+interface substractI{
+	int minus(int a, int b);
+}
+public class Substract {
+
+}

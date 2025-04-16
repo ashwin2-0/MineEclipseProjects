@@ -1,0 +1,33 @@
+Predicate Functional Interface
+
+This Functional Interface is used for functional check
+return boolean value
+----------------------------------------------------------------------------------------------------	
+Predicate : 
+In Java, a Predicate is a functional interface that represents a boolean-valued
+ function of one argument. It is often used for filtering or matching conditions.
+test(T t) 
+Parameters:
+t - the input argument
+Returns:
+true if the input argument matches the predicate, otherwise false
+----------------------------------------------------------------------------------------------------
+Consumer
+A Consumer is a functional interface that accepts a single input argument and returns no result. 
+It is typically used for operations that perform some action on the input argument.
+
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+----------------------------------------------------------------------------------------------------
+
+Supplier
+A Supplier is a functional interface that represents a supplier of results. 
+It does not take any arguments and returns a result.
+
+@FunctionalInterface
+public interface Supplier<T> {
+    T get();
+}
+----------------------------------------------------------------------------------------------------

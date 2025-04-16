@@ -1,0 +1,20 @@
+package src.com.lambda;
+
+@FunctionalInterface
+interface calculatorI {
+	int sum(int a, int b);
+}
+
+public class CalculatorDemo {
+
+	public static void main(String[] args) {
+
+		calculatorI calc = ( a,  b) -> {
+			
+			return a+b;
+		};
+		System.out.println(calc.sum(78, 80));
+		;
+	}
+
+}

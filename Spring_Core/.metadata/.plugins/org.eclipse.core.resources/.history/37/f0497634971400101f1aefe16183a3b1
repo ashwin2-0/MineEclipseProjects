@@ -1,0 +1,16 @@
+package com.spring.jdbc;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+@Configuration
+public class JDBCConfig {
+	
+	@Bean("ds")
+	public DriverManagerDataSource getDataSource() {
+		return null;
+	}
+	
+
+}

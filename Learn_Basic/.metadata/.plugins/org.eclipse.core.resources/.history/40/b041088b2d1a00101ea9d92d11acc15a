@@ -1,0 +1,7 @@
+package src.com.MapFlatMap;
+
+public class MapVsFlatMapDemo {
+	public static void main(String[] args) {
+		List<Customer> list = CustomerDatabase.getAllCustomer();
+	}
+}

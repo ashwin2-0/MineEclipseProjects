@@ -1,0 +1,17 @@
+package src.com.predicate;
+
+import java.util.ArrayList;
+
+public class PredicateUseCase1 {
+	public static void main(String[] args) {
+		ArrayList<Integer> numbers = new ArrayList<>();
+
+		// Add non-sequential integers to the list
+		numbers.add(15);
+		numbers.add(42);
+		numbers.add(7);
+		numbers.add(89);
+		numbers.add(23);
+	}
+
+}

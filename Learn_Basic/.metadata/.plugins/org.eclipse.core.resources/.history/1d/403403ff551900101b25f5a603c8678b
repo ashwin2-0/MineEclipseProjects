@@ -1,0 +1,9 @@
+package src.com.lambda;
+
+interface calculatorI {
+	int sum(int a, int b);
+}
+
+public class CalculatorDemo implements calculatorI {
+
+}

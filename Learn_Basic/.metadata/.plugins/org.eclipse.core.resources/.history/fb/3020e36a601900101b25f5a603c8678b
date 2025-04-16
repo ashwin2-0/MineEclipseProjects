@@ -1,0 +1,32 @@
+package src.com.consumer;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
+
+public class ConsumerDemo {
+
+	/*
+	 * @Override public void accept(Object t) { System.out.println("accept :" + t);
+	 * 
+	 * }
+	 */
+	public static void main(String[] args) {
+		Consumer<Integer> consume = (t) -> System.out.println("print :" + t);
+		 ArrayList<Integer> numbers = new ArrayList<>();
+
+	        // Add non-sequential integers to the list
+	        numbers.add(15);
+	        numbers.add(42);
+	        numbers.add(7);
+	        numbers.add(89);
+	        numbers.add(23);
+	     for ( Integer a: numbers) {
+			consume.accept(a);
+		}
+	   System.out.println("---------------OR_------with the help of stream-----------------");
+	  // numbers.forEach(consume);
+	   numbers.forEach(a->System.out.println("value is :"+a));
+
+	}
+
+}

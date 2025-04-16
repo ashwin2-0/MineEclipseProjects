@@ -1,0 +1,11 @@
+package src.com.supplier;
+
+import java.util.function.Supplier;
+
+public class SupplierDemoLatest {
+	public static void main(String[] args) {
+		Supplier<String> op = () -> "Hello Java";
+		op.get();
+	}
+
+}

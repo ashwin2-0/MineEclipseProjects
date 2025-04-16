@@ -1,0 +1,33 @@
+package src.com.stream;
+
+public class StreamDemo {
+public static void main(String[] args) {
+	Got it, here’s an ArrayList with exactly 20 random words:
+		import java.util.ArrayList;
+
+		public class RandomWordsList {
+		    public static void main(String[] args) {
+		        // Create an ArrayList to store words
+		        ArrayList<String> words = new ArrayList<>();
+
+		        // Adding 20 random words
+		        words.add("Echo"); words.add("Shadow"); words.add("Galaxy"); words.add("Thunder");
+		        words.add("Mystic"); words.add("Blaze"); words.add("Aurora"); words.add("Solstice");
+		        words.add("Nebula"); words.add("Zenith"); words.add("Eclipse"); words.add("Comet");
+		        words.add("Vortex"); words.add("Cipher"); words.add("Phantom"); words.add("Quasar");
+		        words.add("Vertex"); words.add("Radiant"); words.add("Spectrum"); words.add("Momentum");
+
+		        // Print the ArrayList
+		        System.out.println("Random words in the ArrayList: " + words);
+		    }
+		}
+
+		
+		🏆 Output:
+		Random words in the ArrayList: [Echo, Shadow, Galaxy, Thunder, Mystic, Blaze, Aurora, Solstice, Nebula, Zenith, Eclipse, Comet, Vortex, Cipher, Phantom, Quasar, Vertex, Radiant, Spectrum, Momentum]
+
+		
+		Now you’ve got 20 words exactly! Let me know if you want modifications, different themes, or something extra. 🚀😃
+
+}
+}

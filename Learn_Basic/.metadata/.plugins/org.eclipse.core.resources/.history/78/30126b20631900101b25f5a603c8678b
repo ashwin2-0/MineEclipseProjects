@@ -1,0 +1,8 @@
+package src.com.supplier;
+
+public class SupplierDemoLatest {
+	public static void main(String[] args) {
+		
+	}
+
+}

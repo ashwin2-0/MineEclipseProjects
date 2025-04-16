@@ -1,0 +1,66 @@
+package com.spring.jdbc.dao;
+
+import com.spring.jdbc.entity.Student;
+
+import java.util.List;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+public class StudentDaoImpl implements StudentDao {
+
+	private JdbcTemplate jdbcTemplate;
+
+	@Override
+	public int insert(Student student) {
+		// INSERT Query
+		String query = "insert into student(id,name,city) values(?,?,?)";
+		int numRows = this.jdbcTemplate.update(query, student.getId(), student.getName(), student.getCity());
+		return numRows;
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
+	public int change(Student student) {
+		// updating data
+		String query = "update student set name=? ,city=? where id=?";
+		int numRows = this.jdbcTemplate.update(query, student.getName(), student.getCity(), student.getId());
+		System.out.println("Query: update student set name=" + student.getName() + ", city=" + student.getCity()
+				+ " where id=" + student.getId());
+		return numRows;
+	}
+
+	@Override
+	public int delete(int stId) {
+		// Delete data
+		String query = "delete from student where id=?";
+		int numRows = this.jdbcTemplate.update(query, stId);
+		System.out.println("Query: Delete Student where student id =" + stId);
+		return numRows;
+	}
+
+	@Override
+	public Student getStudent(int studentid) {
+		// selecting single student data
+		RowMapper<Student> rimpl = new RowMapperImpl();
+		String que = "Select * from student where id=?";
+		Student st = this.jdbcTemplate.queryForObject(que, rimpl, studentid);
+		return st;
+	}
+
+	@Override
+	public List<Student> getAllStudent() {
+		// selecting all students 
+		RowMapper<Student> rimpl = new RowMapperImpl();
+		String q = "select * from student";
+		List<Student> list = this.jdbcTemplate.query(q, rimpl);
+	}
+
+}

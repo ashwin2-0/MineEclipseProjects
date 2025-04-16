@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=SpringCore/C:\/Program Files\/Java\/jdk-24\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/&lt;java.lang(FdLibm$Sqrt.class[Sqrt" modifiers="24" timestamp="1743073167061"/>
+    <typeInfo handle="=SpringCore/C:\/Program Files\/Java\/jdk-24\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/&lt;java.lang(Math.class[Math" modifiers="49" timestamp="1743073167061"/>
+    <typeInfo handle="=SpringCore/C:\/Program Files\/Java\/jdk-24\/lib\/jrt-fs.jar`java.base=/maven.pomderived=/true=/&lt;java.lang(String.class[String" modifiers="49" timestamp="1743073167061"/>
+    <typeInfo handle="=SpringCore/C:\/Program Files\/Java\/jdk-24\/lib\/jrt-fs.jar`java.sql=/maven.pomderived=/true=/&lt;java.sql(DriverManager.class[DriverManager" modifiers="33" timestamp="1743073167061"/>
+    <typeInfo handle="=springJDBC/C:\/Users\/ashwi\/.m2\/repository\/org\/springframework\/spring-jdbc\/6.1.6\/spring-jdbc-6.1.6.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-jdbc=/=/maven.version=/6.1.6=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.jdbc.datasource(DriverManagerDataSource.class[DriverManagerDataSource" modifiers="33" timestamp="1744047162937"/>
+    <typeInfo handle="=springORM/C:\/Users\/ashwi\/.m2\/repository\/org\/springframework\/spring-orm\/5.3.30\/spring-orm-5.3.30.jar=/maven.pomderived=/true=/=/maven.groupId=/org.springframework=/=/maven.artifactId=/spring-orm=/=/maven.version=/5.3.30=/=/maven.scope=/compile=/=/maven.pomderived=/true=/&lt;org.springframework.orm.hibernate5(HibernateTransactionManager.class[HibernateTransactionManager" modifiers="33" timestamp="1744143274286"/>
+</typeInfoHistroy>

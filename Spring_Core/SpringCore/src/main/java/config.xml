@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           https://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- <bean class="com.springCore.Student" name="student1" p:student_id="455" 
+		p:student_name="Mayur" p:student_city="nashik" /> -->
+
+	<bean class="com.dependInj.collection.Employee" id="employee">
+		<property name="name" value="Ram" />
+
+		<property name="phones">
+			<list>
+				<value>950361258</value>
+				<value>785415255</value>
+				<value>887744225</value>
+			</list>
+		</property>
+		<property name="address">
+			<set>
+				<value>delhi</value>
+				<value>ahmadabad</value>
+				<value>kanpur</value>
+			</set>
+		</property>
+		<property name="couses">
+			<map>
+				<entry key="4" value="Java">
+				</entry>
+				<entry key="3" value="Spring Boot">
+				</entry>
+				<entry key="5" value="Hibernate">
+				</entry>
+
+
+			</map>
+		</property>
+
+	</bean>
+
+</beans>
+
+

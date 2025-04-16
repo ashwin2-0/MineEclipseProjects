@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC 
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN" 
+  "http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<!-- Version 8 MySQL Hibernate cfg.xml example for Hibernate 5 -->
+<hibernate-configuration>
+	<session-factory>
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/myhiber</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">Pass@1234</property>
+		<property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="cache.use_second_level.cache">true</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+		<!-- <mapping class="com.tut.projectWithMaven.Student" />
+			<mapping class="com.tut.projectWithMaven.Student" /> 
+		     <mapping class="com.tut.projectWithMaven.Address"/> 
+			<mapping class="com.tut.map.Answer" />
+			 <mapping class="com.tut.map.Question"/> 
+			<mapping class="com.tut.map2.Employee" />
+			 <mapping class="com.tut.map2.Project"/> 
+			 <mapping class="com.tut.map.Answer" />
+		    <mapping class="com.tut.map.Question" />
+			 
+			 --> 
+		<mapping class="com.tut.StateDemo.Student" />
+			<mapping class="com.tut.map.Answer" />
+			 <mapping class="com.tut.map.Question"/> 
+
+
+	</session-factory>
+</hibernate-configuration>

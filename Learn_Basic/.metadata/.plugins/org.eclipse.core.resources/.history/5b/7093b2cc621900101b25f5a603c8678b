@@ -1,0 +1,7 @@
+package src.com.supplier;
+
+import java.util.function.Supplier;
+
+public class SupplierDemoTraditional  implements Supplier<String>{
+
+}

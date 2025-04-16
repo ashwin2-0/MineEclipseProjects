@@ -1,0 +1,31 @@
+package src.com.stream;
+
+import java.util.ArrayList;
+
+public class StreamFilterDemo {
+	public static void main(String[] args) {
+		ArrayList<String> words = new ArrayList<>();
+
+		// Adding 20 random words
+		words.add("Echo");
+		words.add("Shadow");
+		words.add("Galaxy");
+		words.add("Thunder");
+		words.add("Mystic");
+		words.add("Blaze");
+		words.add("Aurora");
+		words.add("Solstice");
+		words.add("Nebula");
+		words.add("Zenith");
+		words.add("Eclipse");
+		words.add("Comet");
+		words.add("Vortex");
+		words.add("Cipher");
+		words.add("Phantom");
+		words.add("Quasar");
+		words.add("Vertex");
+		words.add("Radiant");
+		words.add("Spectrum");
+		words.add("Momentum");
+	}
+}

@@ -1,0 +1,12 @@
+package src.com.lambda;
+
+@FunctionalInterface
+interface substractI {
+	int minus(int a, int b);
+}
+
+public class Substract {
+	public static void main(String[] args) {
+		substractI sub = (a, b) -> a - b;
+	}
+}

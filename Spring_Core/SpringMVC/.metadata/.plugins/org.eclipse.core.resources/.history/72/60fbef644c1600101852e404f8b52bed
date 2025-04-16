@@ -1,0 +1,149 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Your Resume</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eaf3ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1, h2 {
+            color: #003366;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: #005a99;
+            border-bottom: 2px solid #005a99;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            font-size: 20px;
+        }
+
+        .section-content {
+            font-size: 16px;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Resume</h1>
+    <div class="container">
+        <!-- Display Name -->
+        <div class="section">
+            <div class="section-title">Name</div>
+            <div class="section-content">${name}</div>
+        </div>
+
+        <!-- Display Experience -->
+        <div class="section">
+            <div class="section-title">Experience</div>
+            <div class="section-content">${experience} years</div>
+        </div>
+
+        <!-- Display Skills -->
+        <div class="section">
+            <div class="section-title">Skills</div>
+            <div class="section-content">
+                <ul>
+                    <c:forEach var="skill" items="${skills}">
+                        <li>${skill}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Display Projects -->
+        <div class="section">
+            <div class="section-title">Projects</div>
+            <div class="section-content">
+                <ul>
+                    <c:forEach var="entry" items="${projects}">
+                        <li>${entry.key} - ${entry.value} months</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Display Languages -->
+        <div class="section">
+            <div class="section-title">Languages Known</div>
+            <div class="section-content">
+                <ul>
+                    <c:forEach var="language" items="${languages}">
+                        <li>${language}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Display Education -->
+        <div class="section">
+            <div class="section-title">Education</div>
+            <div class="section-content">
+                <ul>
+                    <c:forEach var="entry" items="${education}">
+                        <li>${entry.key}: ${entry.value}</li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Display Address -->
+        <div class="section">
+            <div class="section-title">Address</div>
+            <div class="section-content">${address}</div>
+        </div>
+
+        <!-- Display Phone -->
+        <div class="section">
+            <div class="section-title">Phone Number</div>
+            <div class="section-content">${phone}</div>
+        </div>
+
+        <!-- Display Email -->
+        <div class="section">
+            <div class="section-title">Email</div>
+            <div class="section-content">${email}</div>
+        </div>
+    </div>
+    <footer>&copy; 2025 Dynamic Resume Builder</footer>
+</body>
+</html>

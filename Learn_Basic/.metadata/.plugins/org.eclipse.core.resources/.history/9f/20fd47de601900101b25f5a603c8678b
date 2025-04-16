@@ -1,0 +1,7 @@
+package src.com.predicate;
+
+import java.util.function.Predicate;
+
+public class PredicateDemoTraditional implements Predicate<Integer>{
+
+}

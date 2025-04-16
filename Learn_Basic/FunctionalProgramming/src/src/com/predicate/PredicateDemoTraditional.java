@@ -1,0 +1,17 @@
+package src.com.predicate;
+
+import java.util.function.Predicate;
+
+public class PredicateDemoTraditional {
+
+	public static void main(String[] args) {
+		/*
+		 * Predicate<Integer> predicate = (Integer t) -> { if (t % 2 == 0) { return
+		 * true; } else { return false; } };
+		 */
+		Predicate<Integer> predicate = a -> a % 2 == 0;
+		System.out.println(predicate.test(48));
+
+	}
+
+}

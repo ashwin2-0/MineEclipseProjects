@@ -1,0 +1,16 @@
+package src.com.supplier;
+
+import java.util.function.Supplier;
+
+public class SupplierDemoTraditional implements Supplier<String> {
+
+	@Override
+	public String get() {
+		return "Helllo Ashwin";
+	}
+	public static void main(String[] args) {
+		SupplierDemoTraditional cd = new SupplierDemoTraditional();
+		System.out.println(cd.get());
+	}
+
+}

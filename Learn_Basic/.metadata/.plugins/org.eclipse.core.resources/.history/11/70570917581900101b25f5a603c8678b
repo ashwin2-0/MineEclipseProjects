@@ -1,0 +1,8 @@
+package src.com.lambda;
+
+public class Book {
+	private int id;
+	private String bookName;
+	private int pages ;
+	
+}

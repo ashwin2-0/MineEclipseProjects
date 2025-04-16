@@ -1,0 +1,11 @@
+package src.com.MapFlatMap;
+
+import java.util.List;
+
+public class MapVsFlatMapDemo {
+	public static void main(String[] args) {
+		List<Customer> list = CustomerDatabase.getAllCustomer();
+		// get all Customer and add all numbers it into list
+		
+	}
+}

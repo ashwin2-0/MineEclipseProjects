@@ -1,0 +1,174 @@
+package com.tut.map;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Answer {
+	@Id
+	@Column(name = "answer_Id")
+	private int answerId;
+
+	private String answer;
+
+	@OneToOne(mappedBy = "answer")
+	@JoinColumn(name = "que_id")
+	private Question question;
+	
+	/* what is mappedBy 
+	 * - Without `mappedBy:
+  Hibernate creates separate foreign key columns in both tables (`question` and `answer`), which leads to duplicate relationships and inconsistency.
+
+- With `mappedBy`:
+  Hibernate uses the `answer` field in the `Question` entity to handle the foreign key reference. The foreign key column (`que_id`) appears only in the `Question` table, avoiding duplication.
+
+	 * 
+	 * 
+	 */
+
+	public Answer() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Answer(int answerId, String answer) {
+		super();
+		this.answerId = answerId;
+		this.answer = answer;
+	}
+
+	public int getAnswerId() {
+		return answerId;
+	}
+
+	public void setAnswerId(int answerId) {
+		this.answerId = answerId;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
+	}
+
+}
+-------------------------------------------------------------------------------------------
+package com.tut.map;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Question {
+	@Id
+	@Column(name = "question_Id")
+	private int questionId;
+	private String question;
+	@OneToOne
+	@JoinColumn(name="a_id")
+	private Answer answer;
+
+	public Question() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Question(int questionId, String question, Answer answer) {
+		super();
+		this.questionId = questionId;
+		this.question = question;
+		this.answer = answer;
+	}
+
+	public int getQuestionId() {
+		return questionId;
+	}
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public Answer getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(Answer answer) {
+		this.answer = answer;
+	}
+
+}
+---------------------------------------------------------------------------------------------
+package com.tut.map;
+
+import org.hibernate.Transaction;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class MapDemo {
+	public static void main(String[] args) {
+		Configuration cfg = new Configuration();
+		cfg.configure("hibernate.cfg.xml");
+		SessionFactory factory = cfg.buildSessionFactory();
+		// creating question
+		Question q1 = new Question();
+		q1.setQuestionId(1212);
+		q1.setQuestion("What is java ?");
+		
+		Question q2 = new Question();
+		q2.setQuestionId(242);
+		q2.setQuestion("What is Collection Framework ?");
+
+		// creating Answer
+		Answer ans1 = new Answer();
+		ans1.setAnswerId(343);
+		ans1.setAnswer("Java is Programming Language");
+		q1.setAnswer(ans1);
+		ans1.setQuestion(q1);
+
+		Answer ans2 = new Answer();
+		ans2.setAnswerId(344);
+		ans2.setAnswer("API to work witj Objects in Java");
+		q2.setAnswer(ans2);
+		ans2.setQuestion(q2);
+
+		// get session
+		Session s = factory.openSession();
+
+		// Save Answer first (to fulfill foreign key constraint)
+		
+		Question que = (Question)s.get(Question.class, 1212);
+		System.out.println(que.getQuestionId()+" :"+que.getQuestion());
+		System.out.println(que.getAnswer().getAnswer());
+		Transaction tx = s.beginTransaction();
+		tx.commit();
+		s.close();
+		factory.close();
+	}
+}

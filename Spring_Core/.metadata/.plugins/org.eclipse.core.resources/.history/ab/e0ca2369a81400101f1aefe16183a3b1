@@ -1,0 +1,6 @@
+package com.spring.orm.entities;
+
+public class Student {
+	private Integer studentId;
+	private String studentName ;
+}

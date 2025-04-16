@@ -1,0 +1,70 @@
+package src.com.realTimeExample;
+
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class EmplService {
+	DataBaseEmployee db = new DataBaseEmployee();
+
+	public List<Employee> gettaxPayers() {
+
+		List<Employee> TaxEligible = db.employees.stream().filter(a -> a.getSalary() > 60000)
+				.collect(Collectors.toList());
+		return TaxEligible;
+	}
+
+	public Employee getMaxSalaryEmployee() {
+		return db.employees.stream().max((a, b) -> Double.compare(a.getSalary(), b.getSalary())).orElse(null);
+	}
+
+	public Employee getMinSalaryEmployee() {
+		return db.employees.stream().min((a, b) -> Double.compare(a.getSalary(), b.getSalary())).orElse(null);
+	}
+
+	public List<Employee> getMarketingEmpl() {
+		return db.employees.stream().filter(a -> a.getDept().equalsIgnoreCase("Sales")).collect(Collectors.toList());
+	}
+
+	public Map<String, Long> eachDeptEmployee() {
+		return db.employees.stream().collect(Collectors.groupingBy(Employee::getDept, Collectors.counting()));
+	}
+
+	public List<Employee> getEmployeeSortedBySalary() {
+		return db.employees.stream().sorted((a, b) -> Double.compare(a.getSalary(), b.getSalary()))
+				.collect(Collectors.toList());
+	}
+
+	public List<Employee> getEmployeeSortedBySalary2() {
+		return db.employees.stream().sorted(Comparator.comparing(Employee::getSalary)) // Comparator usage
+				.collect(Collectors.toList());
+	}
+
+	/// now same thing in reverse order
+	public List<Employee> getEmployeeSortedBySalaryReverse() {
+		return db.employees.stream().sorted((a, b) -> Double.compare(b.getSalary(), a.getSalary()))
+				.collect(Collectors.toList());
+	}
+
+	public List<Employee> getEmployeeSortedBySalaryReverse2() {
+		return db.employees.stream().sorted(Comparator.comparing(Employee::getSalary, Comparator.reverseOrder()))
+				.collect(Collectors.toList());
+	}
+
+	public static void main(String[] args) {
+		EmplService empl = new EmplService();
+		System.out.println("Employee Taxable");
+		empl.gettaxPayers().forEach(a -> System.out.println(a.toString() + "\n"));
+		System.out.println("Maximun Salary is of Person " + empl.getMaxSalaryEmployee().toString());
+		System.out.println("Minimum Salary is of Person " + empl.getMinSalaryEmployee().toString());
+		// System.out.println()"";
+		System.out.println("---------------People from marketing------------------");
+		empl.getMarketingEmpl().forEach(System.out::println);
+		System.out.println("---------------Department wise count------------------");
+		empl.eachDeptEmployee().entrySet().stream()
+				.forEach(a -> System.out.println(a.getKey() + " Department has " + a.getValue() + " Employees"));
+		System.out.println("---------------Employee sorted based on salary----------------");
+		empl.getEmployeeSortedBySalary().stream().forEach(a -> System.out.println(a.toString() + "\n"));
+	}
+}

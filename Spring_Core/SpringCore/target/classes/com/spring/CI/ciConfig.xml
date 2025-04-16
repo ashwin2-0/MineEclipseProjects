@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           https://www.springframework.org/schema/context/spring-context.xsd">
+	<bean class="com.spring.CI.Person" id="person">
+		<constructor-arg value="Mahesh"	></constructor-arg>
+		<constructor-arg value="456"></constructor-arg>
+		<constructor-arg ref="cer"></constructor-arg>
+	</bean>
+	<bean class="com.spring.CI.Certi" id="cer">
+		<constructor-arg value="Java Certificate"></constructor-arg>
+		
+	</bean>
+	<bean class="com.spring.CI.Addition" id="addition">
+		<constructor-arg value="111" type="java.lang.Integer" index="1"></constructor-arg>
+		<constructor-arg value="222" type="java.lang.Integer" index="0"></constructor-arg>
+		<!-- by default here value type consider by Spring is String -->
+		
+	</bean>
+	
+	<!-- this can also be written as
+			<bean class="com.spring.CI.Person" id="person">
+				<constructor-arg value="Mahesh"	type="java.lang.String"></constructor-arg>
+				<constructor-arg value="456" type="java.lang.Integer"></constructor-arg>
+			</bean>
+	
+	
+	 -->
+</beans>
+
+

@@ -1,0 +1,177 @@
+These examples will cover the common scenarios and varieties of `@Bean` usage:
+
+
+
+ 1. Basic Bean Definition
+This is the simplest way to define a bean using the `@Bean` annotation.
+
+java
+@Configuration
+public class AppConfig {
+    @Bean
+    public Student student() {
+        return new Student();
+    }
+}
+
+- This defines a `Student` bean with the default name `"student"`.
+- The bean can be injected or fetched using the `ApplicationContext`.
+
+
+
+ 2. Custom Bean Name
+You can explicitly assign a custom name to the bean.
+
+java
+@Configuration
+public class AppConfig {
+    @Bean(name = "customStudentBean")
+    public Student student() {
+        return new Student();
+    }
+}
+
+- The bean is registered with the name `"customStudentBean"`.
+- Useful for avoiding naming conflicts.
+
+
+
+ 3. Method Parameters for Dependency Injection
+You can define beans that depend on other beans.
+
+java
+@Configuration
+public class AppConfig {
+    @Bean
+    public Teacher teacher() {
+        return new Teacher();
+    }
+
+    @Bean
+    public Course course(Teacher teacher) {
+        Course course = new Course();
+        course.setTeacher(teacher);
+        return course;
+    }
+}
+
+- In this example, the `Course` bean depends on the `Teacher` bean.
+- Spring automatically injects the `Teacher` bean as a parameter.
+
+
+
+ 4. Bean Scope
+Specify the scope of the bean (e.g., `singleton`, `prototype`).
+
+java
+@Configuration
+public class AppConfig {
+    @Bean
+    @Scope("prototype")
+    public Student student() {
+        return new Student();
+    }
+}
+
+- A `prototype` bean creates a new instance each time it is fetched from the `ApplicationContext`.
+
+
+
+ 5. Conditionally Registering Beans
+You can register a bean conditionally using logic.
+
+java
+@Configuration
+public class AppConfig {
+    @Bean
+    public Teacher teacher() {
+        return new Teacher();
+    }
+
+    @Bean
+    public Course course() {
+        if (isAdvancedCourseEnabled()) {
+            return new AdvancedCourse();
+        } else {
+            return new BasicCourse();
+        }
+    }
+
+    private boolean isAdvancedCourseEnabled() {
+        // Add logic to decide the condition
+        return true;
+    }
+}
+
+- This defines a `Course` bean based on a runtime condition.
+
+
+
+ 6. Initializing and Destroying Beans
+You can define lifecycle methods for beans.
+
+java
+@Configuration
+public class AppConfig {
+    @Bean(initMethod = "init", destroyMethod = "cleanup")
+    public Student student() {
+        return new Student();
+    }
+}
+
+- The `initMethod` runs when the bean is created.
+- The `destroyMethod` runs when the bean is destroyed.
+
+
+
+ 7. Factory Method
+You can use a factory method to create beans.
+
+java
+@Configuration
+public class AppConfig {
+    @Bean
+    public Teacher teacherFactory() {
+        return TeacherFactory.createTeacher();
+    }
+}
+
+- The factory method `createTeacher()` is responsible for the bean creation.
+
+
+
+ 8. Bean with External Configuration
+You can use external configuration values.
+
+java
+@Configuration
+public class AppConfig {
+
+    @Value("${student.name}")
+    private String studentName;
+
+    @Bean
+    public Student student() {
+        Student student = new Student();
+        student.setName(studentName);
+        return student;
+    }
+}
+
+- The `@Value` annotation injects the value from a properties file or environment variable.
+
+
+
+ Example `ApplicationContext` Usage
+Here's how you can use the above configuration:
+
+java
+public class ConfigTest {
+    public static void main(String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        Student student = context.getBean(Student.class);
+        student.studying();
+    }
+}
+
+

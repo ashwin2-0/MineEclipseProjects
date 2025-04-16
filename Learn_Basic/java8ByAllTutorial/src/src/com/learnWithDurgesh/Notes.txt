@@ -1,0 +1,23 @@
+Lambda is an anonymous function
+
+1- No name
+2- No Modifier
+3- No Return type 
+
+Rules for the lambda
+1- If the body of the lambda expression contains only statement then curly braces are optional
+2- java compiler also inter the type of variable passed in Argument hence writing type is optional.
+
+Functional Interface :
+1- if the interface contains only one abstract method then it is functional Interface for example Runnable, Comparable.
+2- To call lambda We require Functional Interface in very simple and short manner
+
+Important Benift of using lambda is :
+					 Functional Programming: Lambdas enable functional programming in Java, allowing you to pass
+					  behavior (functions) as parameters to methods. This is particularly useful with the Streams API.
+					  
+see whenever we have interface specifically as an functional interface , then in that case there are 3 way to implements
+those methods'
+ 1 - make implement class and then use it in out main method 
+ 2- make anonymous class and provide implementation their
+ 3- without writing Implementation we can use lambda to pride the implementation of method written in functional interface

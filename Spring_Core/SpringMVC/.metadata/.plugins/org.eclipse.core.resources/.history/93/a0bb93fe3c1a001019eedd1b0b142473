@@ -1,0 +1,150 @@
+package springMVC.controller;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+@Controller
+public class HomeController {
+	@RequestMapping("/home")
+	public String home(Model model) {
+		System.out.println("from homeController inside home method");
+		model.addAttribute("name", "Durgesh Tiwar");
+		model.addAttribute("sname", "Aniket Kumar Joshis");
+		List<String> sub = Arrays.asList("Java,Spring Boot, JSP , Jquery ,MySQL");
+		model.addAttribute("subjects", sub);
+		String page = "index";
+		return page;
+	}
+
+	@RequestMapping("/about")
+	public String about() {
+		System.out.println("from homeController inside About  method");
+		String page = "about";
+		return page;
+	}
+
+	// writing to show the demo of model and view
+	@RequestMapping("/help")
+	public ModelAndView help() {
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("name", "Die With You");
+		modelAndView.addObject("collection", 2000);
+		LocalDateTime time = LocalDateTime.now();
+		String t = time.toString();
+		List<Integer> numbers = new ArrayList<>();
+		for (int i = 1; i <= 10; i++) {
+			numbers.add(i);
+		}
+		modelAndView.addObject("numbers", numbers);
+		modelAndView.setViewName("help");
+		return modelAndView;
+
+	}
+
+	@RequestMapping("/resume")
+	public ModelAndView resume() {
+
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.setViewName("resume");
+		return modelAndView;
+
+	}
+
+	@RequestMapping("/resume2")
+	public ModelAndView resume2() {
+
+		ModelAndView modelAndView = new ModelAndView();
+
+		modelAndView.setViewName("resume2");
+		return modelAndView;
+
+	}
+
+	@RequestMapping(value = "/generateResume", method = RequestMethod.POST)
+	public ModelAndView generateResume(@RequestParam("name") String name, @RequestParam("experience") int experience,
+			@RequestParam("skills") String skills,
+			// @RequestParam("projects") String projects,
+			@RequestParam("languages") String languages, @RequestParam("education") String education,
+			@RequestParam("address") String address, @RequestParam("phone") String phone,
+			@RequestParam("email") String email) {
+
+		// Parse collections and maps
+		List<String> skillsList = Arrays.asList(skills.split(","));
+		Map<String, Integer> projectsMap = new HashMap<>();
+		/*
+		 * for (String entry : projects.split(",")) { String[] keyValue =
+		 * entry.split(":"); projectsMap.put(keyValue[0].trim(),
+		 * Integer.parseInt(keyValue[1].trim())); }
+		 */
+		Set<String> languagesSet = new HashSet<>(Arrays.asList(languages.split(",")));
+		Map<String, String> educationMap = new HashMap<>();
+		for (String entry : education.split(",")) {
+			String[] keyValue = entry.split(":");
+			educationMap.put(keyValue[0].trim(), keyValue[1].trim());
+		}
+
+		// Add attributes to ModelAndView
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("name", name);
+		modelAndView.addObject("experience", experience);
+		modelAndView.addObject("skills", skillsList);
+		modelAndView.addObject("projects", projectsMap);
+		modelAndView.addObject("languages", languagesSet);
+		modelAndView.addObject("education", educationMap);
+		modelAndView.addObject("address", address);
+		modelAndView.addObject("phone", phone);
+		modelAndView.addObject("email", email);
+		modelAndView.setViewName("resumeDisplay");
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/generateResume2", method = RequestMethod.POST)
+	public ModelAndView generateResume(@ModelAttribute CustomerDTO customer, RedirectAttributes redirectAttributes) {
+
+	
+		Set<String> languagesSet = new HashSet<>(Arrays.asList(customer.getLanguages().split(",")));
+		Map<String, String> educationMap = new HashMap<>();
+		for (String entry : customer.getEducation().split(",")) {
+			String[] keyValue = entry.split(":");
+			educationMap.put(keyValue[0].trim(), keyValue[1].trim());
+		}
+
+		// Add flash message
+		redirectAttributes.addFlashAttribute("message", "Your resume has been generated successfully!");
+		redirectAttributes.addFlashAttribute("skills", String.join(",", skillsList));
+		redirectAttributes.addFlashAttribute("languages", String.join(",", languagesSet));
+		redirectAttributes.addFlashAttribute("projects", projectsMap.entrySet().stream()
+				.map(e -> e.getKey() + ":" + e.getValue()).collect(Collectors.joining(",")));
+		// Redirect to another view with flash attributes
+		ModelAndView modelAndView = new ModelAndView("redirect:/resumeDisplay2");
+		modelAndView.addObject("name", customer.getName());
+		modelAndView.addObject("experience", customer.getExperience());
+		modelAndView.addObject("skills", skillsList);
+		modelAndView.addObject("projects", projectsMap);
+		modelAndView.addObject("languages", languagesSet);
+		modelAndView.addObject("education", educationMap);
+		modelAndView.addObject("address", customer.getAddress());
+		modelAndView.addObject("phone", customer.getPhone());
+		modelAndView.addObject("email", customer.getEmail());
+
+		return modelAndView;
+	}
+}

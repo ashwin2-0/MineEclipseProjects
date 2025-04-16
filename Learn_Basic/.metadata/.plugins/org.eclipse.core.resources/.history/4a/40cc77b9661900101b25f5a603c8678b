@@ -1,0 +1,65 @@
+package src.com.stream;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+public class StreamDemo {
+	public static void main(String[] args) {
+		// Create an ArrayList to store words
+		ArrayList<String> words = new ArrayList<>();
+
+		// Adding 20 random words
+		words.add("Echo");
+		words.add("Shadow");
+		words.add("Galaxy");
+		words.add("Thunder");
+		words.add("Mystic");
+		words.add("Blaze");
+		words.add("Aurora");
+		words.add("Solstice");
+		words.add("Nebula");
+		words.add("Zenith");
+		words.add("Eclipse");
+		words.add("Comet");
+		words.add("Vortex");
+		words.add("Cipher");
+		words.add("Phantom");
+		words.add("Quasar");
+		words.add("Vertex");
+		words.add("Radiant");
+		words.add("Spectrum");
+		words.add("Momentum");
+
+		words.stream().forEach(a -> System.out.println(a));
+		System.out.println("---------------map demo---------------------------------");
+		Map<Integer, String> map = new HashMap<>();
+
+		// Adding 20 entries to the map
+		map.put(1, "Echo");
+		map.put(2, "Shadow");
+		map.put(3, "Galaxy");
+		map.put(4, "Thunder");
+		map.put(5, "Mystic");
+		map.put(6, "Blaze");
+		map.put(7, "Aurora");
+		map.put(8, "Solstice");
+		map.put(9, "Nebula");
+		map.put(10, "Zenith");
+		map.put(11, "Eclipse");
+		map.put(12, "Comet");
+		map.put(13, "Vortex");
+		map.put(14, "Cipher");
+		map.put(15, "Phantom");
+		map.put(16, "Quasar");
+		map.put(17, "Vertex");
+		map.put(18, "Radiant");
+		map.put(19, "Spectrum");
+		map.put(20, "Momentum");
+		map.forEach((a, b) -> System.out.println("key is :" + a + " ,value is :" + b));
+		System.out.println("working of consumer");
+		Consumer<String> cons = (a) ->  System.out.println(a);
+		
+
+	}
+}

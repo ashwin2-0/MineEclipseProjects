@@ -1,0 +1,11 @@
+package src.com.lambda;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class BookDao {
+	List<Book> books = Arrays.asList(new Book(45, "Hall of fame", 405), new Book(74, "Two States", 894)
+
+	);
+
+}

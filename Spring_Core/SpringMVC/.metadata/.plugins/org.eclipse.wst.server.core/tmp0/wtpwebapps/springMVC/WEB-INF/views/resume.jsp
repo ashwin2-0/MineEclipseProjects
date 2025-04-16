@@ -1,0 +1,110 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Resume Builder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #003366;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #003366;
+        }
+
+        input[type="text"], input[type="number"], input[type="tel"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #003366;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005a99;
+        }
+
+        textarea {
+            resize: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Resume Builder</h1>
+    <form action="generateResume" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="experience">Experience (in years):</label>
+        <input type="number" id="experience" name="experience" required>
+
+        <label for="skills">Skills:</label>
+        <input type="text" id="skills" name="skills" placeholder="Comma-separated values" required>
+
+        <label for="projects">Projects:</label>
+        <textarea id="projects" name="projects" placeholder="Comma-separated (ProjectName:Months)" required></textarea>
+
+        <label for="languages">Languages Known:</label>
+        <input type="text" id="languages" name="languages" placeholder="Comma-separated values" required>
+
+        <label for="education">Education (Degree:Institution):</label>
+        <textarea id="education" name="education" placeholder="Comma-separated" required></textarea>
+
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" rows="3" required></textarea>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="submit">Generate Resume</button>
+    </form>
+    <footer>&copy; 2025 Resume Builder</footer>
+      <!-- Include jQuery validation file -->
+    <script src="/WEB-INF/validate/resumeValid.js"></script>
+</body>
+</html>

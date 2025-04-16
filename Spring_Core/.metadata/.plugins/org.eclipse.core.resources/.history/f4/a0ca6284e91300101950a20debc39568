@@ -1,0 +1,43 @@
+package com.spring.jdbc;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.spring.jdbc.dao.StudentDao;
+import com.spring.jdbc.entity.Student;
+
+/**
+ * Hello world!
+ *
+ */
+public class App {
+	public static void main(String[] args) {
+		System.out.println("My JDBC Program Started");
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("com/spring/jdbc/config.xml");
+	
+
+		/*
+		 * 	JdbcTemplate jdbcTemplate = (JdbcTemplate) context.getBean("jdbcTemplate", JdbcTemplate.class);
+		 * // INSERT Query String query =
+		 * "insert into student(id,name,city) values(?,?,?)"; int rowsAffected =
+		 * jdbcTemplate.update(query,456,"Rao","Nashik");
+		 * System.out.println("No of Rows Affected :"+rowsAffected);
+		 */
+
+		StudentDao studentDao = (StudentDao) context.getBean("stImpl", StudentDao.class);
+		Student st1 = new Student();
+		/*
+		 * st1.setId("58"); st1.setName("John"); st1.setCity("Dhule");
+		 */
+		// below code is for update the data
+		st1.setId("12");
+		st1.setName("Salman Khan");
+		st1.setCity("Bandra");
+		//int res = studentDao.insert(st1);    -- this is for insert
+		int res = studentDao.change(st1)
+		System.out.println("No Of Rows Affected :"+res);
+		
+	}
+}

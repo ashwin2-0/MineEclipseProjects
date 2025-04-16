@@ -1,0 +1,12 @@
+package src.com.MapFlatMap;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class MapVsFlatMapDemo {
+	public static void main(String[] args) {
+		List<Customer> list = CustomerDatabase.getAllCustomer();
+		// get all Customer and add all email it into list
+		list.stream().map(a->a.getEmail()).collect(Collectors.toList());
+	}
+}

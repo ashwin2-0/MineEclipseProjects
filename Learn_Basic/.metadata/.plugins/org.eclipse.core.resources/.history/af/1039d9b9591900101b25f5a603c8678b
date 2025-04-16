@@ -1,0 +1,19 @@
+package src.com.lambda;
+
+import java.util.Comparator;
+import java.util.List;
+
+public class BookService {
+	private List<Book> getBookInSorted() {
+		List<Book> listOfBooks = new BookDao().getBooks();
+		return listOfBooks;
+	}
+
+}
+
+class BookComparator implements Comparator<Book> {
+	@Overrid
+	public int Compare(Book b1, Book b2) {
+		return b1.getBookName().compareTo(b2.getBookName());
+	}
+}

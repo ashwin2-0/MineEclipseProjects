@@ -1,0 +1,97 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Welcome to My Portfolio</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f9;
+}
+
+header {
+	background-color: #4CAF50;
+	color: white;
+	padding: 15px 0;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.intro {
+	text-align: center;
+	margin: 50px auto;
+}
+
+.intro h1 {
+	color: #333;
+}
+
+.intro p {
+	color: #666;
+	font-size: 1.2em;
+	margin-top: 10px;
+}
+
+footer {
+	text-align: center;
+	margin-top: 50px;
+	padding: 10px 0;
+	background-color: #4CAF50;
+	color: white;
+}
+
+.button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px 20px;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 1em;
+	margin-top: 20px;
+	display: inline-block;
+}
+
+.button:hover {
+	background-color: #45a049;
+}
+</style>
+<body>
+	<header> Welcome to My Portfolio </header>
+	<%
+	String name = (String) request.getAttribute("name");
+	String sname = (String) request.getAttribute("sname");
+	
+	%>
+	<div class="intro">
+		<h1>
+			Hello, I’m
+			<%=name%>
+			!
+		</h1>
+		<p>Welcome to my professional portfolio. Explore my work, skills,
+			and achievements.</p>
+		<p>
+			Hello i am calling to
+			<%=sname%>
+		</p>
+		<br> <br>
+		<h3>-----------------------getting all
+			subjects------------------------------</h3>
+		<h3>Subjects</h3>
+		<ul>
+			<% List<String> subjects = (List<String>) request.getAttribute("subjects");
+       for (String subject : subjects) { %>
+			<li><h3><%= subject %></h3></li>
+			<% } %>
+		</ul>
+		<a href="about.jsp" class="button">Learn More About Me</a>
+	</div>
+	<footer> © 2025 Your Name | All Rights Reserved </footer>
+</body>
+</html>

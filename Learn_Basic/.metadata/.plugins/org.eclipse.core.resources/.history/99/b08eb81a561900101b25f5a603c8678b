@@ -1,0 +1,16 @@
+package src.com.lambda;
+
+@FunctionalInterface
+interface calculatorI {
+	int sum(int a, int b);
+}
+
+public class CalculatorDemo implements calculatorI {
+
+	@Override
+	public int sum(int a, int b) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

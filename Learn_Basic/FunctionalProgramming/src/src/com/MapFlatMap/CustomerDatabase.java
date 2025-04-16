@@ -1,0 +1,32 @@
+package src.com.MapFlatMap;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class CustomerDatabase {
+	public static List<Customer> getAllCustomer() {
+		return Stream
+				.of(new Customer(101, "Amit", "amit@example.com", List.of(9876543210L, 9812345678L, 9801122334L)),
+						new Customer(209, "Bhavya", "bhavya@example.com", List.of(8765432109L, 8723456789L)),
+						new Customer(345, "Chetan", "chetan@example.com", List.of(7654321098L)),
+						new Customer(432, "Deepak", "deepak@example.com", List.of(6543210987L, 6532109876L)),
+						new Customer(567, "Esha", "esha@example.com", List.of(5432109876L, 5412345678L, 5400987654L)),
+						new Customer(678, "Farhan", "farhan@example.com", List.of(4321098765L, 4311223344L)),
+						new Customer(789, "Ganesh", "ganesh@example.com", List.of(3210987654L)),
+						new Customer(876, "Harsha", "harsha@example.com", List.of(2109876543L, 2187654321L)),
+						new Customer(954, "Ishita", "ishita@example.com",List.of(1098765432L, 1076543210L, 1065432109L)),
+						new Customer(1023, "Jatin", "jatin@example.com", List.of(9988776655L)),
+						new Customer(1124, "Kiran", "kiran@example.com", List.of(8877665544L, 8833445566L)),
+						new Customer(1235, "Lavanya", "lavanya@example.com", List.of(7766554433L)),
+						new Customer(1346, "Mohan", "mohan@example.com", List.of(6655443322L, 6699223377L)),
+						new Customer(1457, "Nikhil", "nikhil@example.com", List.of(5544332211L)),
+						new Customer(1568, "Ojas", "ojas@example.com", List.of(4433221100L, 4455667788L, 4411223344L)),
+						new Customer(1679, "Pranav", "pranav@example.com", List.of(3322110099L)),
+						new Customer(1780, "Quincy", "quincy@example.com", List.of(2211009988L, 2200113344L)),
+						new Customer(1891, "Rohan", "rohan@example.com", List.of(1100998877L, 1199887766L)),
+						new Customer(1902, "Shreya", "shreya@example.com", List.of(9988667755L)),
+						new Customer(2013, "Tanvi", "tanvi@example.com", List.of(8877556644L, 8822334455L)))
+				.collect(Collectors.toList());
+	}
+}

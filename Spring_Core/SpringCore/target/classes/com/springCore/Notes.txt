@@ -1,0 +1,81 @@
+Using setter injection
+<bean class="com.springCore.Student" name="student1">
+		<property name="student_id">
+			<value>121</value>
+		</property>
+		<property name="student_name">
+			<value>Rahul</value>
+		</property>
+		<property name="student_city">
+			<value>Delhi</value>
+		</property>
+	</bean>
+
+-----------------------------------------------------------------------------------
+now Property injection using p Schema and using value as attribute
+
+
+<bean class="com.springCore.Student" name="student1"
+		p:student_id="455" p:student_name="Mayur" p:student_city="nashik" />
+
+
+like this they saying
+
+	<bean class="com.springCore.Student" id="student1">
+		<property name="student_id" value="121" />
+
+		<property name="student_name" value="Bhushan" />
+
+		<property name="student_city" value="Jalgaon" />
+
+	</bean>
+	this is another way 
+-----------------------------------------------------------------------------------
+know how to pass the collection values in dependency form
+
+<bean class="com.dependInj.collection.Employee" id="employee">
+		<property name="name" value="Ram" />
+
+		<property name="phones">
+			<list>
+				<value>950361258</value>
+				<value>785415255</value>
+				<value>887744225</value>
+			</list>
+		</property>
+		<property name="address">
+			<set>
+				<value>delhi</value>
+				<value>ahmadabad</value>
+				<value>kanpur</value>
+			</set>
+		</property>
+		<property name="couses">
+			<map>
+				<entry key="4" value="Java">
+				</entry>
+				<entry key="3" value="Spring Boot">
+				</entry>
+				<entry key="5" value="Hibernate">
+				</entry>
+
+
+			</map>
+		</property>
+
+	</bean>
+-------------------------------------------------------------------------------------------------------------
+and how to pass reference :
+<bean class="com.springCore.ref.B" id="bRef">
+		<property name="y" value="12" />
+
+	</bean>
+	<bean class="com.springCore.ref.A" id="aRef">
+		<property name="x" value="44" />
+		<property name="object" ref="bRef" />
+
+		<!-- you can also be write it as <property name="object"> <ref bean ="bRef" 
+			/> </property> -->
+
+
+	</bean>

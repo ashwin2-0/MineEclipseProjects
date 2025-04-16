@@ -1,0 +1,26 @@
+package com.spring.orm.dao;
+
+import javax.transaction.Transactional;
+
+import org.springframework.orm.hibernate5.HibernateTemplate;
+
+import com.spring.orm.entities.Student;
+
+public class StudentDao {
+	private HibernateTemplate htemp;
+	
+	@Transactional
+	public int insert(Student student) {
+		Integer res = (Integer) this.htemp.save(student);
+		return res;
+	}
+
+	public HibernateTemplate getHtemp() {
+		return htemp;
+	}
+
+	public void setHtemp(HibernateTemplate htemp) {
+		this.htemp = htemp;
+	}
+
+}

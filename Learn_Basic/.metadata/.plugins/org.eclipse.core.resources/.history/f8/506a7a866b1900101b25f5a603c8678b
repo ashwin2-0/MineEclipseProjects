@@ -1,0 +1,30 @@
+package src.com.realTimeExample;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class EmplService {
+	DataBaseEmployee db = new DataBaseEmployee();
+
+	public List<Employee> gettaxPayers() {
+
+		List<Employee> TaxEligible = db.employees.stream().filter(a -> a.getSalary() > 60000)
+				.collect(Collectors.toList());
+		return TaxEligible;
+	}
+
+	public Employee getMaxSalaryEmployee() {
+		return db.employees.stream().max((a, b) -> Double.compare(a.getSalary(), b.getSalary())).orElse(null);
+	}
+	public Employee getMinSalaryEmployee() {
+		return db.employees.stream().min((a, b) -> Double.compare(a.getSalary(), b.getSalary())).orElse(null);
+	}
+
+	public static void main(String[] args) {
+		EmplService empl = new EmplService();
+		System.out.println("Employee Taxable");
+		empl.gettaxPayers().forEach(a -> System.out.println(a.toString() + "\n"));
+		System.out.println("Maximun Salary is of Person "+empl.getMaxSalaryEmployee().toString());
+		System.out.println("Maximun Salary is of Person "+empl.getMaxSalaryEmployee().toString());
+	}
+}

@@ -1,0 +1,15 @@
+package src.com.predicate;
+
+import java.util.function.Predicate;
+
+public class PredicateDemoTraditional implements Predicate<Integer> {
+
+	@Override
+	public boolean test(Integer t) {
+		if (t % 2 == 0) {
+			return true;
+		}else
+		return false;
+	}
+
+}

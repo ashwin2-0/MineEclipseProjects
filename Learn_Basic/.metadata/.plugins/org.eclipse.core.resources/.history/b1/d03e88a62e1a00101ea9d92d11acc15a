@@ -1,0 +1,16 @@
+package src.com.MapFlatMap;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class MapVsFlatMapDemo {
+	public static void main(String[] args) {
+		List<Customer> list = CustomerDatabase.getAllCustomer();
+		// get all Customer and add all email it into list
+		// here all the Customer have one email id ,hence we are able to do this , we
+		// called it one to on mapping
+		List<String> emailList = list.stream().map(a -> a.getEmail()).collect(Collectors.toList());
+		emailList.forEach(System.out::println);
+		list.stream().map(a->a.getPhoneNumbers()).collect(Collectors.toList());
+	}
+}

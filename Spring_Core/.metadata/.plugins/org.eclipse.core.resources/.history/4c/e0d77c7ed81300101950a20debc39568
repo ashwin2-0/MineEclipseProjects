@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           https://www.springframework.org/schema/context/spring-context.xsd
+             http://www.springframework.org/schema/util
+           https://www.springframework.org/schema/util/spring-util.xsd">
+
+	<util:list list-class="java.util.LinkedList"
+		id="listofbestFriends">
+		<value>Ashwin</value>
+		<value>Rahul</value>
+		<value>Aman</value>
+		<value>Ritesh</value>
+	</util:list>
+	<util:map id="feeStructure" key-type="java.lang.String"
+		value-type="java.lang.Integer">
+		<entry key="Primary School" value="20000" />
+		<entry key="High School" value="35000" />
+		<entry key="College" value="50000" />
+	</util:map>
+	<util:properties id="hibernateProperties">
+		<!-- JDBC Database Connection -->
+		<prop key="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</prop>
+		<prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/your_database</prop>
+		<prop key="hibernate.connection.username">root</prop>
+		<prop key="hibernate.connection.password">your_password</prop>
+
+		<!-- Hibernate Settings -->
+		<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
+		<prop key="hibernate.show_sql">true</prop>
+		<prop key="hibernate.format_sql">true</prop>
+		<prop key="hibernate.hbm2ddl.auto">update</prop>
+	</util:properties>
+
+
+	<bean class="com.springCore.standalone.collection.Person"
+		name="person">
+		<property name="friends" ref="listofbestFriends" />
+		<property name="feeStructure" ref="feeStructure" />
+		<property name="hibernateProperties" ref="hibernateProperties" />
+
+
+	</bean>
+</beans>
+
+

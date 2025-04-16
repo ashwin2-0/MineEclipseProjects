@@ -1,0 +1,17 @@
+package src.com.consumer;
+
+import java.util.function.Consumer;
+
+public class ConsumerDemo {
+
+	/*
+	 * @Override public void accept(Object t) { System.out.println("accept :" + t);
+	 * 
+	 * }
+	 */
+	public static void main(String[] args) {
+		
+
+	}
+
+}

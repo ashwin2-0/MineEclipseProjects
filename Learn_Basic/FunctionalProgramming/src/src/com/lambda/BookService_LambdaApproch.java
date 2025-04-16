@@ -1,0 +1,32 @@
+package src.com.lambda;
+
+import java.util.Collections;
+import java.util.List;
+
+public class BookService_LambdaApproch {
+	public List<Book> getBookInSorted() {
+		List<Book> listOfBooks = new BookDao().getBooks();
+	//	Collections.sort(listOfBooks, (a, b) -> a.getBookName().compareTo(b.getBookName()));
+		 Collections.sort(listOfBooks, (a,b)->a.getPages()-b.getPages()); // to sort
+		// on the basis of number of pages in ascending order
+		return listOfBooks;
+	}
+
+	public static void main(String[] args) {
+		System.out.println(new BookService_LambdaApproch().getBookInSorted().toString());
+	}
+
+}
+/*
+ * // comparator based on book name class BookComparator implements
+ * Comparator<Book> {
+ * 
+ * @Override public int compare(Book b1, Book b2) { return
+ * b1.getBookName().compareTo(b2.getBookName()); } } // comparator based on
+ * number of pages
+ * 
+ * class BookComparatorPages implements Comparator<Book> {
+ * 
+ * @Override public int compare(Book b1, Book b2) { return b1.getPages() -
+ * b2.getPages(); } }
+ */

@@ -1,0 +1,737 @@
+Since you're preparing for Java developer interviews with a focus on Java 8 and have 4 years of experience in the banking domain, I'll provide a tailored list of **15 practice questions** on **Comparable** and **Comparator** interfaces, incorporating Java 8 features like **lambda expressions**, **method references**, and **Streams API**. These questions are designed to cover theoretical, practical, and programming aspects, ensuring you master sorting techniques commonly asked in interviews. Each question includes a **problem statement**, a **solution with code**, and **explanations** to help you practice and understand the concepts deeply, with relevance to real-world banking scenarios where sorting (e.g., transactions, accounts) is common.
+
+---
+
+## 15 Practice Questions on Comparable and Comparator with Java 8 Features
+
+### Comparable Questions (5 Questions)
+The `Comparable` interface is used to define a natural ordering for objects of a class by implementing the `compareTo` method.
+
+1. **Implement `Comparable` in a `Transaction` class to sort by amount in ascending order.**
+   - **Problem**: Create a `Transaction` class with `id`, `amount`, and `date`. Implement `Comparable` to sort transactions by amount. Use a lambda expression to print sorted transactions.
+   - **Solution**:
+     ```java
+     import java.time.LocalDate;
+     import java.util.Arrays;
+     import java.util.List;
+
+     class Transaction implements Comparable<Transaction> {
+         private int id;
+         private double amount;
+         private LocalDate date;
+
+         public Transaction(int id, double amount, LocalDate date) {
+             this.id = id;
+             this.amount = amount;
+             this.date = date;
+         }
+
+         public double getAmount() { return amount; }
+         public String toString() { return "ID: " + id + ", Amount: " + amount; }
+
+         @Override
+         public int compareTo(Transaction other) {
+             return Double.compare(this.amount, other.amount);
+         }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Transaction> transactions = Arrays.asList(
+                 new Transaction(1, 500.0, LocalDate.now()),
+                 new Transaction(2, 200.0, LocalDate.now()),
+                 new Transaction(3, 1000.0, LocalDate.now())
+             );
+             transactions.stream()
+                         .sorted()
+                         .forEach(t -> System.out.println(t));
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     ID: 2, Amount: 200.0
+     ID: 1, Amount: 500.0
+     ID: 3, Amount: 1000.0
+     ```
+   - **Explanation**: The `compareTo` method defines natural ordering by amount. The `stream().sorted()` uses this ordering. Lambda `t -> System.out.println(t)` prints the sorted list. In banking, this is useful for sorting transactions by amount.
+
+2. **Sort a list of `Account` objects by balance using `Comparable` and Streams.**
+   - **Problem**: Create an `Account` class with `accountId` and `balance`. Implement `Comparable` to sort by balance in descending order. Use Streams to sort and collect results.
+   - **Solution**:
+     ```java
+     import java.util.Arrays;
+     import java.util.List;
+     import java.util.stream.Collectors;
+
+     class Account implements Comparable<Account> {
+         private String accountId;
+         private double balance;
+
+         public Account(String accountId, double balance) {
+             this.accountId = accountId;
+             this.balance = balance;
+         }
+
+         public double getBalance() { return balance; }
+         public String toString() { return "ID: " + accountId + ", Balance: " + balance; }
+
+         @Override
+         public int compareTo(Account other) {
+             return Double.compare(other.balance, this.balance); // Descending
+         }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Account> accounts = Arrays.asList(
+                 new Account("A1", 1000.0),
+                 new Account("A2", 500.0),
+                 new Account("A3", 2000.0)
+             );
+             List<Account> sorted = accounts.stream()
+                                            .sorted()
+                                            .collect(Collectors.toList());
+             sorted.forEach(System.out::println);
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     ID: A3, Balance: 2000.0
+     ID: A1, Balance: 1000.0
+     ID: A2, Balance: 500.0
+     ```
+   - **Explanation**: The `compareTo` method sorts in descending order by reversing the comparison. `System.out::println` (method reference) is used in `forEach`. This is relevant for prioritizing high-balance accounts in banking.
+
+3. **Handle null values in `Comparable` for a `Customer` class.**
+   - **Problem**: Create a `Customer` class with `name` and `age`. Implement `Comparable` to sort by name (null-safe). Use a lambda to sort and print.
+   - **Solution**:
+     ```java
+     import java.util.Arrays;
+     import java.util.List;
+
+     class Customer implements Comparable<Customer> {
+         private String name;
+         private int age;
+
+         public Customer(String name, int age) {
+             this.name = name;
+             this.age = age;
+         }
+
+         public String getName() { return name; }
+         public String toString() { return "Name: " + name + ", Age: " + age; }
+
+         @Override
+         public int compareTo(Customer other) {
+             if (this.name == null && other.name == null) return 0;
+             if (this.name == null) return -1;
+             if (other.name == null) return 1;
+             return this.name.compareTo(other.name);
+         }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Customer> customers = Arrays.asList(
+                 new Customer("Bob", 30),
+                 new Customer(null, 25),
+                 new Customer("Alice", 28)
+             );
+             customers.stream()
+                      .sorted()
+                      .forEach(c -> System.out.println(c));
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     Name: null, Age: 25
+     Name: Alice, Age: 28
+     Name: Bob, Age: 30
+     ```
+   - **Explanation**: The `compareTo` method handles null names by placing them first. This is critical in banking for sorting customer data with incomplete fields.
+
+4. **Sort `Employee` objects by salary using `Comparable` and reverse order in Streams.**
+   - **Problem**: Create an `Employee` class with `name` and `salary`. Implement `Comparable` for ascending salary order. Use Streams to sort in reverse order.
+   - **Solution**:
+     ```java
+     import java.util.Arrays;
+     import java.util.List;
+
+     class Employee implements Comparable<Employee> {
+         private String name;
+         private double salary;
+
+         public Employee(String name, double salary) {
+             this.name = name;
+             this.salary = salary;
+         }
+
+         public double getSalary() { return salary; }
+         public String toString() { return "Name: " + name + ", Salary: " + salary; }
+
+         @Override
+         public int compareTo(Employee other) {
+             return Double.compare(this.salary, other.salary);
+         }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Employee> employees = Arrays.asList(
+                 new Employee("Alice", 60000),
+                 new Employee("Bob", 50000),
+                 new Employee("Charlie", 70000)
+             );
+             employees.stream()
+                      .sorted((e1, e2) -> e2.compareTo(e1)) // Reverse
+                      .forEach(System.out::println);
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     Name: Charlie, Salary: 70000.0
+     Name: Alice, Salary: 60000.0
+     Name: Bob, Salary: 50000.0
+     ```
+   - **Explanation**: The `Comparable` defines ascending order, but the lambda `(e1, e2) -> e2.compareTo(e1)` reverses it in the Stream. Useful for ranking employees by salary in HR systems.
+
+5. **Sort `Loan` objects by interest rate using `Comparable` and Streams with method reference.**
+   - **Problem**: Create a `Loan` class with `loanId` and `interestRate`. Implement `Comparable` to sort by interest rate. Use Streams with a method reference to sort and print.
+   - **Solution**:
+     ```java
+     import java.util.Arrays;
+     import java.util.List;
+
+     class Loan implements Comparable<Loan> {
+         private String loanId;
+         private double interestRate;
+
+         public Loan(String loanId, double interestRate) {
+             this.loanId = loanId;
+             this.interestRate = interestRate;
+         }
+
+         public double getInterestRate() { return interestRate; }
+         public String toString() { return "Loan ID: " + loanId + ", Rate: " + interestRate; }
+
+         @Override
+         public int compareTo(Loan other) {
+             return Double.compare(this.interestRate, other.interestRate);
+         }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Loan> loans = Arrays.asList(
+                 new Loan("L1", 5.5),
+                 new Loan("L2", 3.5),
+                 new Loan("L3", 4.5)
+             );
+             loans.stream()
+                  .sorted()
+                  .forEach(System.out::println);
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     Loan ID: L2, Rate: 3.5
+     Loan ID: L3, Rate: 4.5
+     Loan ID: L1, Rate: 5.5
+     ```
+   - **Explanation**: The `Comparable` sorts by interest rate. The method reference `System.out::println` simplifies printing. This is relevant for sorting loans by rate in banking.
+
+---
+
+### Comparator Questions (7 Questions)
+The `Comparator` interface allows custom sorting orders without modifying the class, often using lambda expressions or method references in Java 8.
+
+6. **Sort a list of `Transaction` objects by date using `Comparator` and lambda.**
+   - **Problem**: Use the `Transaction` class from Q1. Create a `Comparator` to sort by date in ascending order using a lambda. Use Streams to apply it.
+   - **Solution**:
+     ```java
+     import java.time.LocalDate;
+     import java.util.Arrays;
+     import java.util.Comparator;
+     import java.util.List;
+
+     class Transaction {
+         private int id;
+         private double amount;
+         private LocalDate date;
+
+         public Transaction(int id, double amount, LocalDate date) {
+             this.id = id;
+             this.amount = amount;
+             this.date = date;
+         }
+
+         public LocalDate getDate() { return date; }
+         public String toString() { return "ID: " + id + ", Date: " + date; }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Transaction> transactions = Arrays.asList(
+                 new Transaction(1, 500.0, LocalDate.of(2025, 4, 1)),
+                 new Transaction(2, 200.0, LocalDate.of(2025, 3, 1)),
+                 new Transaction(3, 1000.0, LocalDate.of(2025, 5, 1))
+             );
+             Comparator<Transaction> byDate = (t1, t2) -> t1.getDate().compareTo(t2.getDate());
+             transactions.stream()
+                         .sorted(byDate)
+                         .forEach(System.out::println);
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     ID: 2, Date: 2025-03-01
+     ID: 1, Date: 2025-04-01
+     ID: 3, Date: 2025-05-01
+     ```
+   - **Explanation**: The lambda-based `Comparator` sorts by date. This is useful for ordering transactions chronologically in banking reports.
+
+7. **Sort `Account` objects by accountId using `Comparator` and method reference.**
+   - **Problem**: Use the `Account` class from Q2. Create a `Comparator` to sort by `accountId` using a method reference. Use Streams to sort.
+   - **Solution**:
+     ```java
+     import java.util.Arrays;
+     import java.util.Comparator;
+     import java.util.List;
+
+     class Account {
+         private String accountId;
+         private double balance;
+
+         public Account(String accountId, double balance) {
+             this.accountId = accountId;
+             this.balance = balance;
+         }
+
+         public String getAccountId() { return accountId; }
+         public String toString() { return "ID: " + accountId + ", Balance: " + balance; }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Account> accounts = Arrays.asList(
+                 new Account("A3", 1000.0),
+                 new Account("A1", 500.0),
+                 new Account("A2", 2000.0)
+             );
+             Comparator<Account> byId = Comparator.comparing(Account::getAccountId);
+             accounts.stream()
+                     .sorted(byId)
+                     .forEach(System.out::println);
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     ID: A1, Balance: 500.0
+     ID: A2, Balance: 2000.0
+     ID: A3, Balance: 1000.0
+     ```
+   - **Explanation**: `Comparator.comparing(Account::getAccountId)` uses a method reference for concise sorting. Useful for sorting accounts by ID in banking systems.
+
+8. **Sort `Customer` objects by age in descending order using `Comparator` and lambda.**
+   - **Problem**: Use the `Customer` class from Q3. Create a `Comparator` to sort by age in descending order using a lambda. Use Streams.
+   - **Solution**:
+     ```java
+     import java.util.Arrays;
+     import java.util.Comparator;
+     import java.util.List;
+
+     class Customer {
+         private String name;
+         private int age;
+
+         public Customer(String name, int age) {
+             this.name = name;
+             this.age = age;
+         }
+
+         public int getAge() { return age; }
+         public String toString() { return "Name: " + name + ", Age: " + age; }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Customer> customers = Arrays.asList(
+                 new Customer("Alice", 28),
+                 new Customer("Bob", 30),
+                 new Customer("Charlie", 25)
+             );
+             Comparator<Customer> byAgeDesc = (c1, c2) -> Integer.compare(c2.getAge(), c1.getAge());
+             customers.stream()
+                      .sorted(byAgeDesc)
+                      .forEach(System.out::println);
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     Name: Bob, Age: 30
+     Name: Alice, Age: 28
+     Name: Charlie, Age: 25
+     ```
+   - **Explanation**: The lambda-based `Comparator` sorts by age in descending order. Useful for prioritizing older customers in banking promotions.
+
+9. **Chain multiple `Comparator` instances to sort `Employee` by name and then salary.**
+   - **Problem**: Use the `Employee` class from Q4. Create a `Comparator` to sort by name (ascending) and then salary (ascending) using `Comparator.comparing`. Use Streams.
+   - **Solution**:
+     ```java
+     import java.util.Arrays;
+     import java.util.Comparator;
+     import java.util.List;
+
+     class Employee {
+         private String name;
+         private double salary;
+
+         public Employee(String name, double salary) {
+             this.name = name;
+             this.salary = salary;
+         }
+
+         public String getName() { return name; }
+         public double getSalary() { return salary; }
+         public String toString() { return "Name: " + name + ", Salary: " + salary; }
+     }
+
+     public class Main {
+         public static void main(String[] args) {
+             List<Employee> employees = Arrays.asList(
+                 new Employee("Alice", 60000),
+                 new Employee("Alice", 50000),
+                 new Employee("Bob", 50000)
+             );
+             Comparator<Employee> byNameThenSalary = Comparator.comparing(Employee::getName)
+                                                              .thenComparingDouble(Employee::getSalary);
+             employees.stream()
+                      .sorted(byNameThenSalary)
+                      .forEach(System.out::println);
+         }
+     }
+     ```
+   - **Output**:
+     ```
+     Name: Alice, Salary: 50000.0
+     Name: Alice, Salary: 60000.0
+     Name: Bob, Salary: 50000.0
+     ```
+   - **Explanation**: `thenComparingDouble` chains sorting criteria. This is useful for multi-level sorting in employee payroll systems.
+
+10. **Sort `Loan` objects by interest rate in descending order using `Comparator` and method reference.**
+    - **Problem**: Use the `Loan` class from Q5. Create a `Comparator` to sort by interest rate in descending order using `Comparator.comparingDouble`. Use Streams.
+    - **Solution**:
+      ```java
+      import java.util.Arrays;
+      import java.util.Comparator;
+      import java.util.List;
+
+      class Loan {
+          private String loanId;
+          private double interestRate;
+
+          public Loan(String loanId, double interestRate) {
+              this.loanId = loanId;
+              this.interestRate = interestRate;
+          }
+
+          public double getInterestRate() { return interestRate; }
+          public String toString() { return "Loan ID: " + loanId + ", Rate: " + interestRate; }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              List<Loan> loans = Arrays.asList(
+                  new Loan("L1", 5.5),
+                  new Loan("L2", 3.5),
+                  new Loan("L3", 4.5)
+              );
+              Comparator<Loan> byRateDesc = Comparator.comparingDouble(Loan::getInterestRate).reversed();
+              loans.stream()
+                   .sorted(byRateDesc)
+                   .forEach(System.out::println);
+          }
+      }
+      ```
+    - **Output**:
+      ```
+      Loan ID: L1, Rate: 5.5
+      Loan ID: L3, Rate: 4.5
+      Loan ID: L2, Rate: 3.5
+      ```
+    - **Explanation**: `Comparator.comparingDouble` with `reversed()` sorts in descending order. This helps prioritize high-rate loans for analysis.
+
+11. **Handle null values in a `Comparator` for sorting `Customer` by name.**
+    - **Problem**: Use the `Customer` class from Q3. Create a `Comparator` to sort by name (nulls last) using `Comparator.nullsLast`. Use Streams.
+    - **Solution**:
+      ```java
+      import java.util.Arrays;
+      import java.util.Comparator;
+      import java.util.List;
+
+      class Customer {
+          private String name;
+          private int age;
+
+          public Customer(String name, int age) {
+              this.name = name;
+              this.age = age;
+          }
+
+          public String getName() { return name; }
+          public String toString() { return "Name: " + name + ", Age: " + age; }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              List<Customer> customers = Arrays.asList(
+                  new Customer("Bob", 30),
+                  new Customer(null, 25),
+                  new Customer("Alice", 28)
+              );
+              Comparator<Customer> byNameNullsLast = Comparator.comparing(Customer::getName, Comparator.nullsLast(String::compareTo));
+              customers.stream()
+                       .sorted(byNameNullsLast)
+                       .forEach(System.out::println);
+          }
+      }
+      ```
+    - **Output**:
+      ```
+      Name: Alice, Age: 28
+      Name: Bob, Age: 30
+      Name: null, Age: 25
+      ```
+    - **Explanation**: `Comparator.nullsLast` ensures null names appear last. Critical for handling incomplete customer data in banking.
+
+12. **Sort a list of strings case-insensitively using `Comparator` and lambda.**
+    - **Problem**: Sort a list of strings case-insensitively using a `Comparator` with a lambda. Use Streams to sort and collect.
+    - **Solution**:
+      ```java
+      import java.util.Arrays;
+      import java.util.Comparator;
+      import java.util.List;
+      import java.util.stream.Collectors;
+
+      public class Main {
+          public static void main(String[] args) {
+              List<String> names = Arrays.asList("alice", "Bob", "ALICE", "bob");
+              Comparator<String> caseInsensitive = (s1, s2) -> s1.compareToIgnoreCase(s2);
+              List<String> sorted = names.stream()
+                                         .sorted(caseInsensitive)
+                                         .collect(Collectors.toList());
+              System.out.println(sorted);
+          }
+      }
+      ```
+    - **Output**:
+      ```
+      [ALICE, alice, Bob, bob]
+      ```
+    - **Explanation**: The lambda uses `compareToIgnoreCase` for case-insensitive sorting. Useful for sorting customer names in reports.
+
+---
+
+### Mixed Comparable and Comparator Questions (3 Questions)
+These combine both interfaces or compare their usage, often asked to test deeper understanding.
+
+13. **Convert a `Comparable` to a `Comparator` for reverse sorting `Transaction` objects.**
+    - **Problem**: Use the `Transaction` class from Q1. Convert its `Comparable` logic to a `Comparator` for reverse sorting by amount using `Comparator.comparing`. Use Streams.
+    - **Solution**:
+      ```java
+      import java.time.LocalDate;
+      import java.util.Arrays;
+      import java.util.Comparator;
+      import java.util.List;
+
+      class Transaction implements Comparable<Transaction> {
+          private int id;
+          private double amount;
+          private LocalDate date;
+
+          public Transaction(int id, double amount, LocalDate date) {
+              this.id = id;
+              this.amount = amount;
+              this.date = date;
+          }
+
+          public double getAmount() { return amount; }
+          public String toString() { return "ID: " + id + ", Amount: " + amount; }
+
+          @Override
+          public int compareTo(Transaction other) {
+              return Double.compare(this.amount, other.amount);
+          }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              List<Transaction> transactions = Arrays.asList(
+                  new Transaction(1, 500.0, LocalDate.now()),
+                  new Transaction(2, 200.0, LocalDate.now()),
+                  new Transaction(3, 1000.0, LocalDate.now())
+              );
+              Comparator<Transaction> reverseAmount = Comparator.comparingDouble(Transaction::getAmount).reversed();
+              transactions.stream()
+                          .sorted(reverseAmount)
+                          .forEach(System.out::println);
+          }
+      }
+      ```
+    - **Output**:
+      ```
+      ID: 3, Amount: 1000.0
+      ID: 1, Amount: 500.0
+      ID: 2, Amount: 200.0
+      ```
+    - **Explanation**: The `Comparator` mimics the `Comparable` logic but reverses it. This shows flexibility in sorting transactions.
+
+14. **Sort `Employee` objects using both `Comparable` and `Comparator` in a single program.**
+    - **Problem**: Use the `Employee` class from Q4. Sort by salary (natural order via `Comparable`) and then by name (custom order via `Comparator`) in separate Streams.
+    - **Solution**:
+      ```java
+      import java.util.Arrays;
+      import java.util.Comparator;
+      import java.util.List;
+
+      class Employee implements Comparable<Employee> {
+          private String name;
+          private double salary;
+
+          public Employee(String name, double salary) {
+              this.name = name;
+              this.salary = salary;
+          }
+
+          public String getName() { return name; }
+          public double getSalary() { return salary; }
+          public String toString() { return "Name: " + name + ", Salary: " + salary; }
+
+          @Override
+          public int compareTo(Employee other) {
+              return Double.compare(this.salary, other.salary);
+          }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              List<Employee> employees = Arrays.asList(
+                  new Employee("Alice", 60000),
+                  new Employee("Bob", 50000),
+                  new Employee("Charlie", 60000)
+              );
+              // Sort by salary (Comparable)
+              System.out.println("Sort by salary:");
+              employees.stream()
+                       .sorted()
+                       .forEach(System.out::println);
+              // Sort by name (Comparator)
+              System.out.println("\nSort by name:");
+              Comparator<Employee> byName = Comparator.comparing(Employee::getName);
+              employees.stream()
+                       .sorted(byName)
+                       .forEach(System.out::println);
+          }
+      }
+      ```
+    - **Output**:
+      ```
+      Sort by salary:
+      Name: Bob, Salary: 50000.0
+      Name: Alice, Salary: 60000.0
+      Name: Charlie, Salary: 60000.0
+
+      Sort by name:
+      Name: Alice, Salary: 60000.0
+      Name: Bob, Salary: 50000.0
+      Name: Charlie, Salary: 60000.0
+      ```
+    - **Explanation**: Demonstrates using both interfaces for different sorting needs, common in payroll systems requiring multiple sort orders.
+
+15. **Compare `Comparable` and `Comparator` by implementing both for a `Loan` class.**
+    - **Problem**: Use the `Loan` class from Q5. Implement `Comparable` for interest rate (ascending) and a `Comparator` for loanId (ascending). Sort using both in Streams and explain differences.
+    - **Solution**:
+      ```java
+      import java.util.Arrays;
+      import java.util.Comparator;
+      import java.util.List;
+
+      class Loan implements Comparable<Loan> {
+          private String loanId;
+          private double interestRate;
+
+          public Loan(String loanId, double interestRate) {
+              this.loanId = loanId;
+              this.interestRate = interestRate;
+          }
+
+          public String getLoanId() { return loanId; }
+          public double getInterestRate() { return interestRate; }
+          public String toString() { return "Loan ID: " + loanId + ", Rate: " + interestRate; }
+
+          @Override
+          public int compareTo(Loan other) {
+              return Double.compare(this.interestRate, other.interestRate);
+          }
+      }
+
+      public class Main {
+          public static void main(String[] args) {
+              List<Loan> loans = Arrays.asList(
+                  new Loan("L3", 4.5),
+                  new Loan("L1", 5.5),
+                  new Loan("L2", 3.5)
+              );
+              // Sort by interest rate (Comparable)
+              System.out.println("Sort by interest rate:");
+              loans.stream()
+                   .sorted()
+                   .forEach(System.out::println);
+              // Sort by loanId (Comparator)
+              System.out.println("\nSort by loanId:");
+              Comparator<Loan> byLoanId = Comparator.comparing(Loan::getLoanId);
+              loans.stream()
+                   .sorted(byLoanId)
+                   .forEach(System.out::println);
+          }
+      }
+      ```
+    - **Output**:
+      ```
+      Sort by interest rate:
+      Loan ID: L2, Rate: 3.5
+      Loan ID: L3, Rate: 4.5
+      Loan ID: L1, Rate: 5.5
+
+      Sort by loanId:
+      Loan ID: L1, Rate: 5.5
+      Loan ID: L2, Rate: 3.5
+      Loan ID: L3, Rate: 4.5
+      ```
+    - **Explanation**: `Comparable` defines the natural order (interest rate), while `Comparator` allows flexible sorting (loanId). `Comparable` requires class modification, but `Comparator` is external and reusable. This is key for loan management systems.
+
+---
+
+### Practice Tips
+- **Code Each Solution**: Implement all 15 programs in an IDE. Test with edge cases (e.g., empty lists, null values, duplicate values).
+- **Simulate Banking Scenarios**: Modify classes to include banking-specific fields (e.g., transaction type, account status) and practice sorting them.
+- **Explain Your Code**: Practice verbalizing your logic as if in an interview, focusing on why you chose `Comparable` vs. `Comparator` or lambda vs. method reference.
+- **Combine with Java 8**: Use Streams, lambdas, and method references extensively, as these are heavily tested in interviews for your experience level.
+- **Handle Edge Cases**: Ensure your `compareTo` and `Comparator` logic handles nulls, duplicates, and equal values correctly.
+- **Relate to Experience**: Based on your banking domain experience, relate these sorting techniques to real-world tasks like generating transaction reports or prioritizing loan applications.
+
+### Additional Notes
+- **Why These Questions?** They cover all aspects of `Comparable` and `Comparator` (natural vs. custom ordering, null handling, chaining, Java 8 integration) and align with banking use cases (sorting transactions, accounts, loans).
+- **Interview Relevance**: For a 4-year experienced candidate, interviewers expect proficiency in sorting with Java 8 features, especially in data-heavy domains like banking.
+- **Next Steps**: If you want more advanced questions (e.g., sorting with custom objects in microservices or Spring Boot applications), let me know. I can also provide a mock interview or help integrate these into a banking project for your portfolio.
+
+Practice these diligently, and you'll be a pro at `Comparable` and `Comparator` with Java 8! If you need further clarification or additional questions, just ask. 😊

@@ -1,0 +1,10 @@
+package comparableAndComparatorDetails;
+
+public class Main3 {
+
+}
+
+class Customer implements Comparable<Customer> {
+    private String name;
+    private int age;
+}

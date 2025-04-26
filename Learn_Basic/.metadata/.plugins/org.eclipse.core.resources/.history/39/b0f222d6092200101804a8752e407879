@@ -1,0 +1,18 @@
+package comparableAndComparatorDetails;
+
+public class Main2 {
+	public static void main(String[] args) {
+
+	}
+}
+
+class Account implements Comparable<Account> {
+	private String accountId;
+	private double balance;
+
+	@Override
+	public int compareTo(Account o) {
+		return Double.compare(this.balance, o.balance)
+	}
+
+}

@@ -1,0 +1,73 @@
+package comparableAndComparatorDetails;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+public class Main1 {
+	public static void main(String[] args) {
+		  List<Transaction> transactions = new ArrayList<>();
+
+	        // Populate the list with sample Transaction objects
+	        transactions.add(new Transaction(1, 1000.50, LocalDate.of(2025, 4, 20)));
+	        transactions.add(new Transaction(2, 250.75, LocalDate.of(2025, 4, 21)));
+	        transactions.add(new Transaction(3, 5000.00, LocalDate.of(2025, 4, 22)));
+	        transactions.add(new Transaction(4, 30.25, LocalDate.of(2025, 4, 23)));
+	        transactions.add(new Transaction(5, 80.10, LocalDate.of(2025, 4, 24)));
+	        transactions.add(new Transaction(6, 640.00, LocalDate.of(2025, 4, 25)));
+	        transactions.add(new Transaction(7, 129.90, LocalDate.of(2025, 4, 26)));
+	        transactions.add(new Transaction(8, 312.15, LocalDate.of(2025, 4, 27)));
+	        transactions.add(new Transaction(9, 715.60, LocalDate.of(2025, 4, 28)));
+	        transactions.add(new Transaction(10, 49.99, LocalDate.of(2025, 4, 29)));
+
+	        // Display the transactions
+	        for (Transaction transaction : transactions) {
+	            System.out.println(transaction);
+	        }
+	}
+}
+
+class Transaction {
+	private int id;
+	private double amount;
+	private LocalDate date;
+
+	public Transaction(int id, double amount, LocalDate date) {
+		super();
+		this.id = id;
+		this.amount = amount;
+		this.date = date;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	@Override
+	public String toString() {
+		return "Transaction [id=" + id + ", amount=" + amount + ", date=" + date + "]";
+	}
+
+}

@@ -1,0 +1,137 @@
+
+
+### Lambda Expressions (10 Questions)
+1. **What are lambda expressions in Java 8, and how do they relate to functional programming?**
+   - Explain the syntax and purpose.
+2. **Write a lambda expression to print all elements of a `List<String>` using `forEach`.**
+   - Example: `List<String> list = Arrays.asList("a", "b", "c"); list.forEach(...);`
+3. **Convert an anonymous inner class for a `Comparator` into a lambda expression.**
+   - Example: Sort a list of integers in descending order.
+4. **Write a lambda to filter numbers greater than 10 from a list.**
+   - Use `List<Integer>` and `forEach` to print results.
+5. **What are the benefits of lambda expressions over anonymous classes?**
+   - Discuss readability and conciseness.
+6. **Write a lambda to concatenate two strings and return the result.**
+   - Example: `(s1, s2) -> s1 + s2`
+7. **Explain the concept of target type in lambda expressions.**
+   - Provide an example with a functional interface.
+8. **Write a lambda to check if a number is prime.**
+   - Example: Use a `Predicate<Integer>`.
+9. **How do lambda expressions handle variable capture? Explain with an example.**
+   - Show capturing a local variable in a lambda.
+10. **Write a lambda to sort a list of `Employee` objects by salary in ascending order.**
+    - Assume `Employee` has `name` and `salary` fields.
+
+---
+
+### Functional Interfaces (8 Questions)
+11. **What is a functional interface? Give examples of built-in functional interfaces in Java 8.**
+    - Mention `Predicate`, `Function`, `Consumer`, `Supplier`.
+12. **Write a custom functional interface and use it with a lambda expression.**
+    - Example: Interface to calculate the square of a number.
+13. **Explain the `@FunctionalInterface` annotation and its significance.**
+    - Why is it used?
+14. **Write a `Predicate` to check if a string length is greater than 5.**
+    - Example: `Predicate<String> p = s -> s.length() > 5;`
+15. **Write a `Function` to convert a string to its uppercase equivalent.**
+    - Example: `Function<String, String> f = s -> s.toUpperCase();`
+16. **Combine two `Predicate` instances using `and` and `or` to validate a number.**
+    - Example: Check if a number is even and greater than 10.
+17. **Write a `Consumer` to append a string to a `StringBuilder`.**
+    - Example: `Consumer<String> c = s -> builder.append(s);`
+18. **Explain the difference between `Function` and `BiFunction`. Provide an example of `BiFunction`.**
+    - Example: Add two numbers using `BiFunction`.
+
+---
+
+### Streams API (15 Questions)
+19. **What is the Streams API in Java 8, and how does it differ from traditional loops?**
+    - Discuss declarative vs. imperative programming.
+20. **Write a Stream pipeline to filter even numbers from a list and collect them into a new list.**
+    - Example: `List<Integer> numbers = Arrays.asList(1, 2, 3, 4);`
+21. **Write a Stream to find the sum of all numbers in a list.**
+    - Use `reduce` or `sum`.
+22. **Explain the difference between `map` and `flatMap` with examples.**
+    - Example: Flatten a list of lists using `flatMap`.
+23. **Write a Stream to group a list of `Employee` objects by their department.**
+    - Use `Collectors.groupingBy`.
+24. **Write a Stream to find the first element in a list that is divisible by 3.**
+    - Use `findFirst`.
+25. **Explain lazy evaluation in Streams with an example.**
+    - Show how intermediate operations are not executed until a terminal operation is invoked.
+26. **Write a Stream to sort a list of strings in descending order and remove duplicates.**
+    - Use `sorted` and `distinct`.
+27. **Write a Stream to count the frequency of each word in a list of strings.**
+    - Use `Collectors.groupingBy` and `counting`.
+28. **What is the difference between `findFirst` and `findAny`? Provide an example.**
+    - Demonstrate with a parallel stream.
+29. **Write a Stream to convert a list of strings to their lengths and collect into a `Set`.**
+    - Example: `List<String> words = Arrays.asList("cat", "dog");`
+30. **Write a Stream to partition numbers into even and odd lists.**
+    - Use `Collectors.partitioningBy`.
+31. **Explain parallel streams and their benefits. Write a parallel stream to process a large list.**
+    - Example: Sum numbers in a large list.
+32. **Write a Stream to find the maximum value in a list of integers.**
+    - Use `max` or `reduce`.
+33. **Write a Stream to join a list of strings with a delimiter.**
+    - Example: Use `Collectors.joining(", ")`.
+
+---
+
+### Optional Class (7 Questions)
+34. **What is the purpose of the `Optional` class in Java 8?**
+    - Explain how it prevents `NullPointerException`.
+35. **Write code to return a default value if an `Optional` is empty.**
+    - Example: `Optional<String> opt = Optional.ofNullable(null);`
+36. **Write a method that uses `Optional` to safely access a nested object property.**
+    - Example: Get an employee’s department name or return "Unknown".
+37. **Explain the difference between `orElse` and `orElseGet`.**
+    - Provide examples showing performance implications.
+38. **Write code to chain `Optional` operations to process a value.**
+    - Example: Transform a string if present.
+39. **Write a method that throws an exception if an `Optional` is empty.**
+    - Use `orElseThrow`.
+40. **How do you use `Optional` with Streams? Provide an example.**
+    - Example: Filter a list and return the first non-empty `Optional`.
+
+---
+
+### Date and Time API (5 Questions)
+41. **What are the advantages of the new Date and Time API in Java 8 over the old `java.util.Date`?**
+    - Discuss immutability and clarity.
+42. **Write code to calculate the number of days between two `LocalDate` instances.**
+    - Example: Use `ChronoUnit.DAYS.between`.
+43. **Write code to format a `LocalDateTime` into a specific pattern.**
+    - Example: Format as "dd-MM-yyyy HH:mm".
+44. **Write code to convert a string to `LocalDate`.**
+    - Example: Parse "2025-04-26".
+45. **Write code to find the next Friday from the current date.**
+    - Use `LocalDate` and `TemporalAdjusters`.
+
+---
+
+### Default/Static Methods in Interfaces (3 Questions)
+46. **What are default methods in interfaces, and why were they introduced?**
+    - Discuss backward compatibility.
+47. **Write an interface with a default method and implement it.**
+    - Example: Default method to return a greeting.
+48. **Write an interface with a static method and call it.**
+    - Example: Static method to create a default instance.
+
+---
+
+### Method References (2 Questions)
+49. **What are method references? Explain the different types with examples.**
+    - Cover static, instance, and constructor references.
+50. **Write a Stream pipeline using method references instead of lambdas.**
+    - Example: Convert a list of strings to uppercase using `String::toUpperCase`.
+
+---
+
+### Notes for Preparation
+- **Practice Coding**: Implement each programming question in an IDE to build muscle memory. Use sample data to test edge cases (e.g., empty lists, null values).
+- **Understand Edge Cases**: Be ready to handle scenarios like empty Streams, null inputs, or parallel stream pitfalls.
+- **Explain Your Code**: During interviews, articulate your thought process while solving these problems.
+- **Cover Theory**: Pair programming questions with theoretical ones to ensure you can explain concepts like lazy evaluation or variable capture.
+
+This list is designed to be comprehensive, covering all Java 8 features likely to be asked in interviews. If you want detailed solutions, code snippets, or a mock interview with these questions, let me know! I can also tailor questions to a specific difficulty level (e.g., junior, mid-level, senior).

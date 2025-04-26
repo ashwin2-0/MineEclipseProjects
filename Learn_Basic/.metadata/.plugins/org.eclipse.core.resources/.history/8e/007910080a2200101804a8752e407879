@@ -1,0 +1,68 @@
+package comparableAndComparatorDetails;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Main2 {
+	public static void main(String[] args) {
+		List<Account> accounts = new ArrayList<>();
+
+		// Manually add 20 Account objects
+		accounts.add(new Account("ACC0001", 1000.50));
+		accounts.add(new Account("ACC0002", 2500.75));
+		accounts.add(new Account("ACC0003", 500.00));
+		accounts.add(new Account("ACC0004", 8000.25));
+		accounts.add(new Account("ACC0005", 120.00));
+		accounts.add(new Account("ACC0006", 6450.10));
+		accounts.add(new Account("ACC0007", 312.89));
+		accounts.add(new Account("ACC0008", 999.99));
+		accounts.add(new Account("ACC0009", 715.60));
+		accounts.add(new Account("ACC0010", 4320.50));
+		accounts.add(new Account("ACC0011", 100.00));
+		accounts.add(new Account("ACC0012", 3800.45));
+		accounts.add(new Account("ACC0013", 890.90));
+		accounts.add(new Account("ACC0014", 4700.60));
+		accounts.add(new Account("ACC0015", 580.45));
+		accounts.add(new Account("ACC0016", 6420.00));
+		accounts.add(new Account("ACC0017", 490.30));
+		accounts.add(new Account("ACC0018", 150.15));
+		accounts.add(new Account("ACC0019", 3180.70));
+		accounts.add(new Account("ACC0020", 7300.80));
+
+		List<Account> sort = accounts.stream().sorted().collect(Collectors.toList());
+	}
+}
+
+class Account implements Comparable<Account> {
+	private String accountId;
+	private double balance;
+
+	public Account(String accountId, double balance) {
+		super();
+		this.accountId = accountId;
+		this.balance = balance;
+	}
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	@Override
+	public int compareTo(Account p) {
+		return this.accountId.compareTo(accountId);
+	}
+
+}
